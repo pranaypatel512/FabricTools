@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">" Crashlytics"</string>
+    <string name="force_crash">Force Crash!</string>
+</resources>
