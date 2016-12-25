@@ -29,9 +29,6 @@ import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
-    private static final String TWITTER_KEY = "l8S9GyRXhpTMu5SYNO06rF2VR";
-    private static final String TWITTER_SECRET = "psas2hs2SG3u1SZS3wZnn7xe4xpeDf3LHe6yicRYz6O7ZaCdRh";
 
     private TwitterLoginButton loginButton;
     private TextView tvTwitterUserName;
@@ -41,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig("[TWITTER_KEY]", "[TWITTER_SECRET]");
         Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
