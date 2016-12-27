@@ -5,27 +5,50 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.digits.sdk.android.AuthCallback;
+import com.digits.sdk.android.Digits;
+import com.digits.sdk.android.DigitsAuthButton;
+import com.digits.sdk.android.DigitsException;
+import com.digits.sdk.android.DigitsSession;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import com.twitter.sdk.android.core.TwitterCore;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig("[TWITTER_KEY]", "[TWITTER_SECRET]");
+        Fabric.with(this, new TwitterCore(authConfig), new Digits.Builder().build());
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        DigitsAuthButton digitsButton = (DigitsAuthButton) findViewById(R.id.auth_button);
+        digitsButton.setCallback(new AuthCallback() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void success(DigitsSession session, String phoneNumber) {
+                // TODO: associate the session userID with your user model
+                Toast.makeText(getApplicationContext(), "Authentication successful" /*for "
+                        + phoneNumber*/, Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void failure(DigitsException exception) {
+                Log.d("Digits", "Sign in with Digits failure", exception);
             }
         });
+
+
+
     }
 
     @Override

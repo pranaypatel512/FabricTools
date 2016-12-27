@@ -13,8 +13,10 @@
     tools:context="com.pranay.fabrictools.digits.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <com.digits.sdk.android.DigitsAuthButton
+        android:id="@+id/auth_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content" />
+
 </RelativeLayout>
