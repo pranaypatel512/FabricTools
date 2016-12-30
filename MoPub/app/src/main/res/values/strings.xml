@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MoPub</string>
+    <string name="str_banner_ad">Banner Ad</string>
+    <string name="str_fullscreen_ad">FullScreen Ad</string>
 </resources>
